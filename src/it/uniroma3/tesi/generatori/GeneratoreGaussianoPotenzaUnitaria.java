@@ -6,6 +6,7 @@ import java.util.Collections;
 
 import org.apache.commons.math3.complex.Complex;
 
+import it.uniroma3.tesi.utils.AlgebraVettori;
 import it.uniroma3.tesi.utils.Statistica;
 import it.uniroma3.tesi.utils.StatisticaComplessa;
 
@@ -24,17 +25,10 @@ public class GeneratoreGaussianoPotenzaUnitaria extends GeneratoreGaussiano {
 	@Override
 	public Complex[] generaComplex(int n_campioni) {
 		Complex[] campioniCasuali = new GeneratoreGaussiano().generaComplex(n_campioni);
-		Complex[] campioniCasualiFinali = new GeneratoreGaussiano().generaComplex(n_campioni);
-		double std = StatisticaComplessa.std(Arrays.asList(campioniCasuali));
-		for(int i=0;i<campioniCasuali.length;i++) {
-			campioniCasuali[i] = campioniCasuali[i].divide(std);
-			for(int j=0;j<campioniCasualiFinali.length;j++) {
-				campioniCasualiFinali[j]= campioniCasuali[i].multiply(std);
-			}
-			
-		}
+		double std = StatisticaComplessa.std(Arrays.asList(campioniCasuali));		
+		campioniCasuali = AlgebraVettori.divVN(campioniCasuali, std);	
 		
-		return campioniCasualiFinali;
+		return campioniCasuali;
 	}
 
 }

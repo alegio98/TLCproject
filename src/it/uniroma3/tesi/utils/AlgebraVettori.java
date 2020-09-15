@@ -122,6 +122,7 @@ public class AlgebraVettori {
 		return ris;
 	}
 	
+	/** @return Moltiplicazione componenti vettore con numero TESTATO */
 	public static Complex[] moltVN(Complex[] vettore , double numero) {
 		Complex[] ris = new Complex[vettore.length];
 		for(int i=0;i< vettore.length;i++) {
@@ -182,7 +183,7 @@ public class AlgebraVettori {
 	}
 	
 
-	/* nuovo metodo */
+	/* nuovo metodo TESTATO */
 	public static Complex[] sommaVettoriComplessi(Complex[] v1,Complex[] v2) {
 		Complex[] risultato = new Complex[v1.length];
 	

@@ -10,6 +10,7 @@ import org.apache.commons.math3.util.DoubleArray;
 
 public class SignalProcessing {
 	
+	// TESTATO
 	public static double calcolaEnergiaSegnale(Complex[] segnale) {
 		int N_campioni = segnale.length;
 		List<Complex> segnaleList = Arrays.asList(segnale);

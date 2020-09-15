@@ -18,8 +18,15 @@ public class CalcolatoreEnergiaTest {
 	}
 
 	@Test
-	public void test() {
+	public void testCalcolaEnergiaSegnale1() {
 		assertEquals(2,ce.calcolaEnergiaSegnale(vett),0.001);
+	}
+	
+	@Test
+	public void testCalcolaEnergiaSegnale2() {
+		vett[0]= new Complex(1,2);
+		vett[1]= new Complex(1,1);
+		assertEquals(3.5,ce.calcolaEnergiaSegnale(vett),0.001);
 	}
 
 }

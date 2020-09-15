@@ -13,7 +13,8 @@ import org.knowm.xchart.BitmapEncoder.BitmapFormat;
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
-
+import org.knowm.xchart.XYSeries;
+import org.knowm.xchart.internal.series.Series;
 
 import it.uniroma3.tesi.calcolatori.CalcolatoreEnergia;
 import it.uniroma3.tesi.generatori.Generatore;
@@ -53,7 +54,7 @@ public class Main {
 //		System.out.println(Arrays.toString(sim.calcolo_PdSim(segnale_PU, soglia_sim)));   ATTENZIONE in questo modo ne ho una randomica sempre!
 //		sim.normalizzatore(PD_sim);
 		sim.ordinamento(PD_sim);
-		System.out.println(Arrays.toString(PD_sim));  //ATTENZIONE se questa riga verrà ripetuta otterrò risultati random ma tutti uguali a quelli di PD_sim 
+		System.out.println(Arrays.toString(PD_sim));  //ATTENZIONE se questa riga verrï¿½ ripetuta otterrï¿½ risultati random ma tutti uguali a quelli di PD_sim 
 //		System.out.println(Arrays.toString(PD_sim2)); 
 		double[] convertiti = sim.convertitorePdSim(PD_sim);
 		sim.ordinamento(convertiti);

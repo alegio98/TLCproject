@@ -14,8 +14,8 @@ public class GeneratoreGaussiano extends Generatore {
 	@Override
 	public Complex[] generaComplex(int n_campioni) {
 		Complex[] campioni = new Complex[n_campioni];
-		for(int i = 0;i<n_campioni;i++) 
-			campioni[i] = new Complex(new Random().nextGaussian()*10,new Random().nextGaussian()*10);
+		for(int i= 0;i<n_campioni;i++) 
+			campioni[i] = new Complex(new Random().nextGaussian(),new Random().nextGaussian());
 		return campioni;
 	}
 	

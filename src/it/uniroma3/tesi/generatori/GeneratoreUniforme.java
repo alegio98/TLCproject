@@ -21,6 +21,9 @@ public class GeneratoreUniforme extends Generatore {
 		return campioni;
 	}
 	
+	/** Metodo per generare il segnale
+	 * @return segnale primary user, modulato QPSK
+	 * */
 	public Complex[] generaComplexSignum(int n_campioni,double sub) {
 		Complex[] campioni = new Complex[n_campioni];
 		for(int i = 0;i<n_campioni;i++) 

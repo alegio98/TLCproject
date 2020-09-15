@@ -3,14 +3,14 @@ package it.uniroma3.tesi;
 import org.apache.commons.math3.complex.Complex;
 
 import it.uniroma3.tesi.generatori.Generatore;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Series;
-import javafx.stage.Stage;
+//import javafx.application.Application;
+//import javafx.scene.Scene;
+//import javafx.scene.chart.CategoryAxis;
+//import javafx.scene.chart.LineChart;
+//import javafx.scene.chart.NumberAxis;
+//import javafx.scene.chart.XYChart;
+//import javafx.scene.chart.XYChart.Series;
+//import javafx.stage.Stage;
 
 import org.apache.commons.math3.complex.Complex;
 import org.knowm.xchart.BitmapEncoder;
@@ -21,8 +21,8 @@ import org.knowm.xchart.SwingWrapper;
 
  
  
-public class Graphics extends Application {
- 
+public class Graphics /*extends Application */{
+ /*
 	double Pfa = Math.pow(10, -2);
 	double[] SNR_dB = Generatore.generaDouble(-25, -5, 1);
 	int Ps = 1;
@@ -50,10 +50,7 @@ public class Graphics extends Application {
       //  XYChart.Series series1 = new XYChart.Series();
         Series<Number, Number> series104 = new XYChart.Series();
         series104.getData().add(new XYChart.Data(SNR_dB, sim.calcolo_PdSim(segnale_PU, soglia_sim)));
-        
-     
-    
-        
+                
         Scene scene  = new Scene(lineChart,800,600);       
         lineChart.getData().add(series104);
        
@@ -64,5 +61,5 @@ public class Graphics extends Application {
  
     public static void main(String[] args) {
         launch(args);
-    }
+    }*/
 }

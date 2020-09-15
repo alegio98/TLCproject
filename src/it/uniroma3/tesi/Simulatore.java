@@ -75,8 +75,9 @@ public class Simulatore {
 
 		for(int i=0;i<SNR_dB.getDimension();i++) {
 			double[] energiaH0 = new double[this.num_prove_H0];
-			for(int j=0;j< this.num_prove_H0;j++) {             
-				Complex[] rumore = this.generazioneRumoreGaussianoUnitario();
+			for(int j=0;j< this.num_prove_H0;j++) {
+				Complex[] rumore = this.generazioneRumoreGaussianoUnitario();		
+				rumore = AlgebraVettori.moltVN(rumore, std_rumore.getEntry(i));
 				energiaH0[j] = new CalcolatoreEnergia().calcolaEnergiaSegnale(rumore);
 			}
 			double[] energiaH0sorted = new double[energiaH0.length];
@@ -84,7 +85,7 @@ public class Simulatore {
 			soglia_sim[i] = energiaH0sorted[energiaH0sorted.length-indiceSoglia];
 			System.out.println();
 		}
-		Arrays.sort(soglia_sim);   // prima lo avevo levato 
+		//Arrays.sort(soglia_sim);   // prima lo avevo levato 
 		return soglia_sim;
 	}
 
@@ -125,6 +126,7 @@ public class Simulatore {
 			double cont_sim = AlgebraVettori.cont_sim(energiaH1,soglia_sim[i]);
 			pd_sim[i] = cont_sim/num_prove_H1;
 		}
+		
 		ArrayUtils.reverse(pd_sim);
 		return pd_sim;
 	}
@@ -175,16 +177,8 @@ public class Simulatore {
 	}
 
 	public static double[] ordinamento(double[] arr) {  
-		   int n = arr.length;
-		   for(int i=0; i<n; i++) {
-		      for(int j=1; j<(n-i); j++)
-		         if(arr[j-1] > arr[j]){  
-		            double temp = arr[j-1];  
-		            arr[j-1] = arr[j];  
-		            arr[j] = temp;  
-		         }
-		   }
-		return arr;
+		   Arrays.parallelSort(arr);
+		   return arr;
 		}  
 
 	/* getters e setters */
