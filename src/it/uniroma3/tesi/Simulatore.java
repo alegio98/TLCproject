@@ -82,9 +82,7 @@ public class Simulatore{
 			}
 			double[] energiaH0sorted = new double[energiaH0.length];
 			energiaH0sorted= ordinamento(energiaH0);
-			soglia_sim[i] = energiaH0sorted[energiaH0sorted.length-indiceSoglia];
-			System.out.println();
-		}
+			soglia_sim[i] = energiaH0sorted[energiaH0sorted.length-indiceSoglia];		}
 		return soglia_sim;
 	}
 
