@@ -20,7 +20,7 @@ import it.uniroma3.tesi.utils.SignalProcessing;
 import it.uniroma3.tesi.utils.Statistica;
 import it.uniroma3.tesi.utils.StatisticaComplessa;
 
-public class Simulatore {
+public class Simulatore{
 
 	private double pfa; // nei commenti mettere l'estensione della sigla, per non perdersi
 	// private List<Double> lista = generaDouble(-25,-5,1); // preferirei passare la
@@ -81,33 +81,12 @@ public class Simulatore {
 				energiaH0[j] = new CalcolatoreEnergia().calcolaEnergiaSegnale(rumore);
 			}
 			double[] energiaH0sorted = new double[energiaH0.length];
-			energiaH0sorted= ordinamento(energiaH0);   // prima ci stava solamente Arrays.sort(energiaH0)
+			energiaH0sorted= ordinamento(energiaH0);
 			soglia_sim[i] = energiaH0sorted[energiaH0sorted.length-indiceSoglia];
 			System.out.println();
 		}
-		//Arrays.sort(soglia_sim);   // prima lo avevo levato 
 		return soglia_sim;
 	}
-
-	//VECCHIO MODO PER CALCOLARE IL SOGLIA_SIM
-	//	public double[] calcoloSogliaPerSimulazione() {
-	//	int sogliaDim = this.SNR_dB.getDimension();
-	//	double[] soglia_sim = new double[sogliaDim];
-	//	int indiceSoglia = (int)Math.ceil(num_prove_H0*pfa);
-	//	
-	//	for(int i=0;i<SNR_dB.getDimension();i++) {
-	//		double[] energiaH0 = new double[SNR_dB.getDimension()];
-	//
-	//		for(int j=0;j< SNR_dB.getDimension();j++) {         
-	//			Complex[] rumore = this.generazioneRumoreGaussianoUnitario();
-	//			energiaH0[j] = new CalcolatoreEnergia().calcolaEnergiaSegnale(rumore);
-	//		}
-	//		Arrays.sort(energiaH0);
-	//		soglia_sim[i] = energiaH0[energiaH0.length-1];
-	//	}
-	//	
-	//	return soglia_sim;
-	//}
 
 
 	public double[] calcolo_PdSim(Complex[] segnale_PU, double[] soglia_sim) {
@@ -135,7 +114,7 @@ public class Simulatore {
 	public double[] convertitorePdSim(double[] PD_sim) {
 		double[] risultati = new double[PD_sim.length];
 		for (int i=0; i<risultati.length; i++) {
-			if(PD_sim[i]>=0.75) {
+			if(PD_sim[i]>0.70) {
 				risultati[i]=1;
 			}
 			else{
@@ -145,17 +124,6 @@ public class Simulatore {
 		return risultati;
 	}
 	
-	//per ovviare al problema dei valori troppo alti generati dal pd_sim , sviluppo una funzione normalizzatore che attenua alcuni valori che riguardano
-	//proprio i PD
-	
-	public double[] normalizzatore(double[] PD_sim) {
-	
-			for(int i=17;i<PD_sim.length;i++) {
-				PD_sim[i]=PD_sim[i]-0.687;
-			}			
-		return PD_sim;
-	}
-
 
 	
 	//A questo centro stella viene applicata la regola della maggioranza 

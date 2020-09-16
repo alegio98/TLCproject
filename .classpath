@@ -25,23 +25,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/daniele/.m2/repository/org/knowm/xchart/xchart/3.6.3/xchart-3.6.3.jar" sourcepath="/home/daniele/.m2/repository/org/knowm/xchart/xchart/3.6.3/xchart-3.6.3-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="org.knowm.xchart"/>
-			<attribute name="maven.artifactId" value="xchart"/>
-			<attribute name="maven.version" value="3.6.3"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="/home/daniele/.m2/repository/com/google/guava/guava/25.0-jre/guava-25.0-jre.jar" sourcepath="/home/daniele/.m2/repository/com/google/guava/guava/25.0-jre/guava-25.0-jre-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="com.google.guava"/>
-			<attribute name="maven.artifactId" value="guava"/>
-			<attribute name="maven.version" value="25.0-jre"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
