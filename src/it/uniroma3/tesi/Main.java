@@ -26,22 +26,6 @@ import it.uniroma3.tesi.utils.AlgebraVettori;
 public class Main {
 	
 	public void GUI() {
-		double Pfa = Math.pow(10, -2);
-		double[] SNR_dB = Generatore.generaDouble(-25, -5, 1);
-		int Ps = 1;
-		int N_prove_h0 = 10000;
-		int N_prove_h1 = 1000;
-		int N_campioni = 100;
-		
-		//System.out.println(ArrayUtils.toString(SNR_dB));
-		
-//		Simulatore sim = new Simulatore(Pfa, SNR_dB, Ps, N_prove_h0, N_prove_h1, N_campioni);
-//
-//		Complex[] segnale_PU = sim.segnale_PU();
-//		double[] soglia_sim = sim.calcoloSogliaPerSimulazione();
-//		double[] PD_sim = sim.calcolo_PdSim(segnale_PU, soglia_sim);
-//		double[] PD_sim2 = sim.calcolo_PdSim(segnale_PU, soglia_sim);
-//	
 		
 		ThreadClass sim1 = new ThreadClass();
 		ThreadClass sim2 = new ThreadClass();
@@ -58,7 +42,8 @@ public class Main {
 			e.printStackTrace();
 		}
 				
-		XYChart chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("X").yAxisTitle("Y").build();
+		XYChart chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("SNR in dB").yAxisTitle("Probabilità Detection").build();
+		chart.setTitle("DETECTION");
 		chart.addSeries("Simulatore1", sim1.getSNR_dB(), sim1.getPD_sim());
 		chart.addSeries("Simulatore2", sim2.getSNR_dB(), sim2.getPD_sim());
 		chart.addSeries("Simulatore3", sim3.getSNR_dB(), sim3.getPD_sim());
@@ -69,31 +54,5 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		
 		new Main().GUI();	
-		
-		
-//		System.out.println(Arrays.toString(soglia_sim));
-
-//		System.out.println(Arrays.toString(sim.calcolo_PdSim(segnale_PU, soglia_sim)));   ATTENZIONE in questo modo ne ho una randomica sempre!
-
-//		sim.ordinamento(PD_sim);
-//		System.out.println(Arrays.toString(PD_sim));  //ATTENZIONE se questa riga verrï¿½ ripetuta otterrï¿½ risultati random ma tutti uguali a quelli di PD_sim 
-
-//		double[] convertiti = sim.convertitorePdSim(PD_sim);
-//		sim.ordinamento(convertiti);
-//		System.out.println(Arrays.toString(convertiti));		
-//		String finale = sim.centroStella(convertiti);
-//		System.out.println(finale);
-		
-//		// Create Chart
-//		XYChart chart = QuickChart.getChart("Sample Chart", "X", "Y", "y(x)", SNR_dB, PD_sim);
-//		
-//		// Show it
-//		new SwingWrapper(chart).displayChart();
-//
-//		// Save it
-//		BitmapEncoder.saveBitmap(chart, "./Sample_Chart", BitmapFormat.PNG);
-//
-//		// or save it in high-res
-//		BitmapEncoder.saveBitmapWithDPI(chart, "./Sample_Chart_300_DPI", BitmapFormat.PNG, 300);
 	}
 }

@@ -56,7 +56,7 @@ public class Simulatore{
 
 	}
 
-	public Complex[] segnale_PU() {
+	public Complex[] segnale_PU() {    
 		Complex[] segnale_PU = new GeneratoreUniformePotenzaUnitaria().generaComplexSignum(n_campioni, 0.5);
 		double devStandardSegnale = StatisticaComplessa.std(Arrays.asList(segnale_PU));
 		segnale_PU = AlgebraVettori.divVN(segnale_PU, devStandardSegnale);
