@@ -16,7 +16,6 @@ import it.uniroma3.tesi.calcolatori.CalcolatoreEnergia;
 import it.uniroma3.tesi.generatori.GeneratoreGaussianoPotenzaUnitaria;
 import it.uniroma3.tesi.generatori.GeneratoreUniformePotenzaUnitaria;
 import it.uniroma3.tesi.utils.AlgebraVettori;
-import it.uniroma3.tesi.utils.SignalProcessing;
 import it.uniroma3.tesi.utils.Statistica;
 import it.uniroma3.tesi.utils.StatisticaComplessa;
 
@@ -97,7 +96,7 @@ public class Simulatore{
 				rumore = AlgebraVettori.moltVN(rumore, this.std_rumore.getEntry(i));
 
 				Complex[] segnale_ricevuto = AlgebraVettori.sommaVettoriComplessi(segnale_PU, rumore);
-				energiaH1[j] = SignalProcessing.calcolaEnergiaSegnale(segnale_ricevuto);
+				energiaH1[j] = CalcolatoreEnergia.calcolaEnergiaSegnale(segnale_ricevuto);
 			}
 
 			double cont_sim = AlgebraVettori.cont_sim(energiaH1,soglia_sim[i]);

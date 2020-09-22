@@ -14,7 +14,7 @@ import org.knowm.xchart.BitmapEncoder.BitmapFormat;
 
 import it.uniroma3.tesi.generatori.Generatore;
 import it.uniroma3.tesi.utils.AlgebraVettori;
-import it.uniroma3.tesi.utils.SignalProcessing;
+
 
 public class ThreadClass extends Thread {
 

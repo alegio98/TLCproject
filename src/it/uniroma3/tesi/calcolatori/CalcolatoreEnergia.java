@@ -13,7 +13,7 @@ public class CalcolatoreEnergia {
 	 * @return L'energia del segnale
 	 * */
 	
-	public double calcolaEnergiaSegnale(Complex[] segnale) {
+	public static double calcolaEnergiaSegnale(Complex[] segnale) {
 		int N_campioni = segnale.length;
 		List<Complex> segnaleList = Arrays.asList(segnale);
 		double[] moduliQuadri = segnaleList.stream().mapToDouble(elemento -> Math.pow(elemento.abs(), 2)).toArray();
