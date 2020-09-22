@@ -16,16 +16,4 @@ public abstract class Generatore {
 		}
 		return campioni;
 	}
-	
-//	public Complex[][] generaComplex2D(int righe, int n_campioni) {
-//		Complex[][] campioni2D = new Complex[righe][n_campioni];
-//		for(int i = 0;i<righe;i++) campioni2D[i] = this.generaComplex(n_campioni);
-//		return campioni2D;
-//	}
-//
-//	public Complex[][][] generaComplex3D(int numero_matrici, int righe, int n_campioni) {
-//		Complex[][][] campioni3D = new Complex[numero_matrici][righe][n_campioni];
-//		for(int i = 0;i<numero_matrici;i++) campioni3D[i] = this.generaComplex2D(righe,n_campioni);
-//		return campioni3D;
-//	}
 }
