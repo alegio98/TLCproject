@@ -26,6 +26,8 @@ public class ThreadClass extends Thread {
 	int N_campioni = 100;
 	double[] PD_sim;
 	
+	double[] convertiti;
+	
 	@Override
 	public void run() {	    //tutti i comandi dentro il run sono eseguiti quando si avvia il thread 	
 		
@@ -35,12 +37,13 @@ public class ThreadClass extends Thread {
 		double[] soglia_sim = sim.calcoloSogliaPerSimulazione();
 		PD_sim = sim.calcolo_PdSim(segnale_PU, soglia_sim);
 		double[] PD_simOrdinati = Simulatore.ordinamento(getPD_sim());
-		double[] convertiti = sim.convertitorePdSim(PD_simOrdinati);
-		String finale = sim.centroStella(convertiti);	
+		convertiti = sim.convertitorePdSim(PD_simOrdinati);
+		String finale = sim.centroStella(convertiti);
 		
 		System.out.println(Arrays.toString(PD_simOrdinati));
 		System.out.println(Arrays.toString(convertiti));
-		System.out.println(finale);
+ 		System.out.println(finale);
+ 		System.out.println(sim.contaPositivi(convertiti));
 		System.out.println("\n");
 
 	}
@@ -53,5 +56,8 @@ public class ThreadClass extends Thread {
 		return PD_sim;
 	}
 	
+	public double[] getConvertiti() {
+		return convertiti;
+	}
 	
 }

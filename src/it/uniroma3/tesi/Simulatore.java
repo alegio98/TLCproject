@@ -21,15 +21,13 @@ import it.uniroma3.tesi.utils.StatisticaComplessa;
 
 public class Simulatore{
 
-	private double pfa; // nei commenti mettere l'estensione della sigla, per non perdersi
-	// private List<Double> lista = generaDouble(-25,-5,1); // preferirei passare la
-	// lista/array al costruttore
-	private ArrayRealVector SNR_dB;
-	private ArrayRealVector SNR_L; // attributo derivato
-	private double Ps; // mettere significato
-	private ArrayRealVector Pn; // attributo derivato
-	private ArrayRealVector std_rumore; // attributo derivato
-
+	private double pfa;                  //Probabilità di falso allarme
+	private ArrayRealVector SNR_dB;      //Rapporto segnale rumore espresso in decibel
+	private ArrayRealVector SNR_L;       //Rapporto segnale rumore forma lineare                    attributo derivato
+	private double Ps;                   //Potenza segnale utile
+	private ArrayRealVector Pn;          //Potenza rumore                                           attributo derivato
+	private ArrayRealVector std_rumore;  //Deviazione standard rumore                              attributo derivato
+	
 	private int num_prove_H0;
 	private int num_prove_H1;
 	private int n_campioni;
@@ -42,14 +40,12 @@ public class Simulatore{
 		this.num_prove_H1 = num_prove_H1;
 		this.n_campioni = n_campioni;
 
-		// SNR_L = 10.^(SNR_dB./10);
+		// // SNR_L = 10.^(SNR_dB./10);
 		this.SNR_L = (ArrayRealVector) this.SNR_dB.mapDivide(10).map(elemento -> Math.pow(10, elemento));
-		// this.SNR_L = AlgebraVettori.powNV(10,AlgebraVettori.divVN(SNR_dB,10)); /*
 		// cosa rappresenta il 10? Creare una costante */
-
+		
 		// Pn = Ps./SNR_L; % potenza ovvero varianza di rumore
 		this.Pn = (ArrayRealVector) this.SNR_L.map(elemento -> Ps / elemento);
-
 
 		this.std_rumore = (ArrayRealVector) this.Pn.map(elemento -> Math.sqrt(elemento));
 
@@ -111,7 +107,7 @@ public class Simulatore{
 	public double[] convertitorePdSim(double[] PD_sim) {
 		double[] risultati = new double[PD_sim.length];
 		for (int i=0; i<risultati.length; i++) {
-			if(PD_sim[i]>0.70) {
+			if(PD_sim[i]>0.67) {
 				risultati[i]=1;
 			}
 			else{
@@ -125,7 +121,7 @@ public class Simulatore{
 	
 	//A questo centro stella viene applicata la regola della maggioranza 
 	
-	public String centroStella(double[] PD_sim) {
+	public static String centroStella(double[] PD_sim) {
 		int cont1=0;
 		int cont0=0;
 		for(int i=0;i<PD_sim.length;i++) {
@@ -134,11 +130,60 @@ public class Simulatore{
 			}
 			else cont0++;
 		}
-
 		if(cont1>cont0)
-			return "Il segnale risulta essere PRESENTE!";
-		else return "il segnale risulta essere ASSENTE!";
-
+			return "Il segnale per questo singolo detector risulta essere presente!";
+		else return "Il segnale per questo singolo detector risulta essere assente!";
+	}
+	
+	public static String regolaMaggioranza(double[][] PD_sim) {
+		int cont1=0;
+		int cont0=0;
+		for(int i=0;i<PD_sim.length;i++) {
+			for(int j=0;j<PD_sim[i].length;j++) {
+				if(PD_sim[i][j]==1) {
+					cont1++;
+				}
+				else cont0++;	
+			}
+		} 
+		if(cont1>cont0)
+			return "Applicando la regola della MAGGIORANZA Il segnale risulta essere PRESENTE.";
+		else return "Applicando la regola della MAGGIORANZA il segnale risulta essere ASSENTE.";
+	}
+	
+	
+	public static String regolaEND(String[] stringa) {
+		String str = new String("Il segnale per questo singolo detector risulta essere assente!");
+		int contNO=0;
+		for(String s : stringa) {
+			if(s.equals(str))
+			contNO++;
+		}
+		if (contNO>=1)
+			return "Applicando la regola dell'END il segnale risulta essere ASSENTE.";
+		else return  "Applicando la regola dell'END il segnale risulta essere PRESENTE.";
+	}
+	
+	
+	public static String regolaOR(String[] stringa) {
+		String str = new String("Il segnale per questo singolo detector risulta essere presente!");
+		int contSI=0;
+		for(String s : stringa) {
+			if(s.equals(str))
+			contSI++;
+		}
+		if (contSI>=1)
+			return "Applicando la regola dell'OR il segnale risulta essere PRESENTE.";
+		else return  "Applicando la regola dell'OR il segnale risulta essere ASSENTE.";
+	}
+	
+	public String contaPositivi (double[] index) {
+		int numero=0;
+		for(int i=0;i<index.length;i++) {
+			if(index[i]==1)
+				numero++;
+		}
+		return "Sono presenti "+ numero + " indici positivi di Probabilità di Detection ";
 	}
 
 	public static double[] ordinamento(double[] arr) {  

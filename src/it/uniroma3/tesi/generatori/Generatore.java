@@ -7,8 +7,8 @@ public abstract class Generatore {
 	public abstract double[] generaDouble(int n_campioni);
 	public abstract Complex[] generaComplex(int n_campioni);
 	
-	public static double[] generaDouble(int begin,int end,int jump) {
-		double[] campioni = new double[21];        // prima la lunghezza era -> (int)Math.ceil((end-begin)/jump) ma venivano 20 campioni me ne servono 21 
+	public static double[] generaDouble(int begin,int end,double jump) {
+		double[] campioni = new double[25];        // prima era  21 con jump settato a 1
 		int j = begin;
 		for(int i=0;i<=(int)Math.ceil((end-begin)/jump);i++) {
 			campioni[i] = j;
