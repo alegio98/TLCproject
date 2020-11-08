@@ -53,8 +53,8 @@ public class Simulatore{
 
 	public Complex[] segnale_PU() {    
 		Complex[] segnale_PU = new GeneratoreUniformePotenzaUnitaria().generaComplexSignum(n_campioni, 0.5);
-		double devStandardSegnale = StatisticaComplessa.std(Arrays.asList(segnale_PU));
-		segnale_PU = AlgebraVettori.divVN(segnale_PU, devStandardSegnale);
+		//double devStandardSegnale = StatisticaComplessa.std(Arrays.asList(segnale_PU));
+		//segnale_PU = AlgebraVettori.divVN(segnale_PU, devStandardSegnale);
 		return segnale_PU;
 	}
 
@@ -67,7 +67,7 @@ public class Simulatore{
 		int sogliaDim = this.SNR_dB.getDimension();
 		double[] soglia_sim = new double[sogliaDim];
 		int indiceSoglia = (int)Math.ceil(num_prove_H0*pfa);
-
+		
 		for(int i=0;i<SNR_dB.getDimension();i++) {
 			double[] energiaH0 = new double[this.num_prove_H0];
 			for(int j=0;j< this.num_prove_H0;j++) {
@@ -98,7 +98,6 @@ public class Simulatore{
 			double cont_sim = AlgebraVettori.cont_sim(energiaH1,soglia_sim[i]);
 			pd_sim[i] = cont_sim/num_prove_H1;
 		}
-		
 		ArrayUtils.reverse(pd_sim);
 		return pd_sim;
 	}
@@ -107,7 +106,7 @@ public class Simulatore{
 	public double[] convertitorePdSim(double[] PD_sim) {
 		double[] risultati = new double[PD_sim.length];
 		for (int i=0; i<risultati.length; i++) {
-			if(PD_sim[i]>0.67) {
+			if(PD_sim[i]>0.76) {
 				risultati[i]=1;
 			}
 			else{
@@ -116,12 +115,11 @@ public class Simulatore{
 		}
 		return risultati;
 	}
-	
 
 	
 	//A questo centro stella viene applicata la regola della maggioranza 
 	
-	public static String centroStella(double[] PD_sim) {
+	public static String detector(double[] PD_sim) {
 		int cont1=0;
 		int cont0=0;
 		for(int i=0;i<PD_sim.length;i++) {
@@ -135,24 +133,22 @@ public class Simulatore{
 		else return "Il segnale per questo singolo detector risulta essere assente!";
 	}
 	
-	public static String regolaMaggioranza(double[][] PD_sim) {
+	public static String regolaMaggioranza(String[] PD_sim) {
+		String str = new String("Il segnale per questo singolo detector risulta essere presente!");
 		int cont1=0;
 		int cont0=0;
-		for(int i=0;i<PD_sim.length;i++) {
-			for(int j=0;j<PD_sim[i].length;j++) {
-				if(PD_sim[i][j]==1) {
-					cont1++;
-				}
-				else cont0++;	
-			}
-		} 
+		for(String s : PD_sim) {
+		if(s.equals(str))
+			cont1++;
+		else cont0++;
+		}
 		if(cont1>cont0)
 			return "Applicando la regola della MAGGIORANZA Il segnale risulta essere PRESENTE.";
 		else return "Applicando la regola della MAGGIORANZA il segnale risulta essere ASSENTE.";
 	}
 	
 	
-	public static String regolaEND(String[] stringa) {
+	public static String regolaAND(String[] stringa) {
 		String str = new String("Il segnale per questo singolo detector risulta essere assente!");
 		int contNO=0;
 		for(String s : stringa) {
@@ -160,8 +156,8 @@ public class Simulatore{
 			contNO++;
 		}
 		if (contNO>=1)
-			return "Applicando la regola dell'END il segnale risulta essere ASSENTE.";
-		else return  "Applicando la regola dell'END il segnale risulta essere PRESENTE.";
+			return "Applicando la regola dell'AND il segnale risulta essere ASSENTE.";
+		else return  "Applicando la regola dell'AND il segnale risulta essere PRESENTE.";
 	}
 	
 	
@@ -177,7 +173,7 @@ public class Simulatore{
 		else return  "Applicando la regola dell'OR il segnale risulta essere ASSENTE.";
 	}
 	
-	public String contaPositivi (double[] index) {
+	public static String contaPositivi (double[] index) {
 		int numero=0;
 		for(int i=0;i<index.length;i++) {
 			if(index[i]==1)
@@ -185,6 +181,119 @@ public class Simulatore{
 		}
 		return "Sono presenti "+ numero + " indici positivi di Probabilità di Detection ";
 	}
+	
+	
+//	public static double[][] traspostaSNR(double[][] convertitiPD){
+//		
+//		double[][] trasposta = new double[4][3];
+//			for(int i=0;i<convertitiPD.length;i++) {
+//			for(int j=0;j<convertitiPD.length;j++) {
+//				trasposta[j][i]= convertitiPD[i][j]; 
+//			}
+//		}	
+//		return trasposta;
+//	}
+	
+public static double[] SNRmaggioranza(double[][] convertitiPD){	
+		double[] finale = new double[21];
+		int cont1 = 0;
+		int cont0 = 0;
+		for(int i=0;i<convertitiPD[0].length;i++) {
+			for(int j=0;j<convertitiPD.length;j++) {
+				if(convertitiPD[j][i]==1) 
+					cont1++;
+				else cont0++;
+			}
+						if (cont1>cont0)
+					    finale[i]=1;
+						else finale[i]=0;
+						cont1=0;
+						cont0=0;
+		}
+		return finale;
+	}
+	
+public static double[] SNRor(double[][] convertitiPD){
+	double[] finale = new double[21];
+	int cont1 = 0;
+	for(int i=0;i<convertitiPD[0].length;i++) {
+		for(int j=0;j<convertitiPD.length;j++) {
+			if(convertitiPD[j][i]==1) 
+			cont1++;
+		}
+			if (cont1>=1)
+				finale[i]=1;
+			else finale[i]=0;
+			cont1=0;
+	}	
+	return finale;
+}
+
+public static double[] SNRand(double[][] convertitiPD){
+	double[] finale = new double[21];
+	int cont0 = 0;
+	for(int i=0;i<convertitiPD[0].length;i++) {
+		for(int j=0;j<convertitiPD.length;j++) {
+			if(convertitiPD[j][i]==0) 
+			cont0++;
+		}
+			if (cont0>=1)
+				finale[i]=0;
+			else finale[i]=1;
+			cont0=0;
+	}	
+	return finale;
+}
+
+
+
+	public static double[] onOffsingle(String[] stringhe) {
+		double[] vettore = new double[stringhe.length];
+			if(stringhe[0].equals("Applicando la regola della MAGGIORANZA Il segnale risulta essere PRESENTE."))
+				vettore[0]=1;
+			else vettore[0]=-1;
+			
+			if(stringhe[1].equals("Applicando la regola dell'AND il segnale risulta essere PRESENTE."))
+				vettore[1]=1;
+			else vettore[1]=-1;
+			
+			if(stringhe[2].equals("Applicando la regola dell'OR il segnale risulta essere PRESENTE."))
+				vettore[2]=1;
+			else vettore[2]=-1;
+			
+		return vettore;
+	}
+	
+	public static double[] ooMagg (double[][] start) {
+		double[] maggioranza = new double[3];
+		for(int i=0;i<=2;i++) {
+			for(int j=0;j<=start[i].length;j++) {
+			maggioranza[i]=start[i][0]; 
+			}
+		}
+		return maggioranza;
+	}
+	
+	public static double[] ooAnd (double[][] start) {
+		double[] end = new double[3];
+		for(int i=0;i<=2;i++) {
+			for(int j=0;j<=start[i].length;j++) {
+			end[i]=start[i][1]; 
+			}
+		}
+		return end;
+	}
+	
+	public static double[] ooOr (double[][] start) {
+		double[] or = new double[3];
+		for(int i=0;i<=2;i++) {
+			for(int j=0;j<=start[i].length;j++) {
+			or[i]=start[i][2]; 
+			}
+		}
+		return or;
+	}
+	
 
 	public static double[] ordinamento(double[] arr) {  
 		   Arrays.parallelSort(arr);

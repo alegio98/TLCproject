@@ -3,8 +3,8 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="it.uniroma3.tesi.calcolatori.CalcolatoreSoglia" project="Progetto Tesi" 
     file="/Progetto Tesi/src/it/uniroma3/tesi/calcolatori/CalcolatoreSoglia.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1419" y="841"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="124" width="233" x="996" y="1073"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="it.uniroma3.tesi.Simulatore" project="Progetto Tesi" 
     file="/Progetto Tesi/src/it/uniroma3/tesi/Simulatore.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="377" width="318" x="875" y="572"/>    
+    <position height="412" width="328" x="916" y="626"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="it.uniroma3.tesi.Main" project="Progetto Tesi" 
     file="/Progetto Tesi/src/it/uniroma3/tesi/Main.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="130" width="142" x="1055" y="338"/>    
+    <position height="130" width="142" x="828" y="399"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="it.uniroma3.tesi.ThreadClass" project="Progetto Tesi" 
     file="/Progetto Tesi/src/it/uniroma3/tesi/ThreadClass.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="234" width="152" x="700" y="259"/>    
+    <position height="234" width="152" x="677" y="399"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -76,7 +76,7 @@
   </class>  
   <class id="9" language="java" name="it.uniroma3.tesi.generatori.GeneratoreGaussiano" project="Progetto Tesi" 
     file="/Progetto Tesi/src/it/uniroma3/tesi/generatori/GeneratoreGaussiano.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="512" y="737"/>    
+    <position height="-1" width="-1" x="512" y="739"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -94,13 +94,13 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="11">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
   <dependency id="12">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <generalization id="13">    
     <end type="SOURCE" refId="9"/>    
@@ -108,36 +108,28 @@
   </generalization>  
   <dependency id="14">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="10"/>  
   </dependency>  
   <dependency id="15">    
     <bendpoint x="634" y="925"/>    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <generalization id="16">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
   <dependency id="17">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <generalization id="19">    
+  <generalization id="18">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="9"/>  
   </generalization>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

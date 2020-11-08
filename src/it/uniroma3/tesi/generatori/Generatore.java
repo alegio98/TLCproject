@@ -8,7 +8,7 @@ public abstract class Generatore {
 	public abstract Complex[] generaComplex(int n_campioni);
 	
 	public static double[] generaDouble(int begin,int end,double jump) {
-		double[] campioni = new double[25];        // prima era  21 con jump settato a 1
+		double[] campioni = new double[21];        // prima era  21 con jump settato a 1
 		int j = begin;
 		for(int i=0;i<=(int)Math.ceil((end-begin)/jump);i++) {
 			campioni[i] = j;
